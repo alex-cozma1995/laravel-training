@@ -3,9 +3,9 @@
 @section('content')
 
     <div class="flex justify-center">
-        <div class="w-8/12 rounded-lg bg-white p-6 mt-10">
-            POSTS
+        <div class="w-8/12 bg-white p-2 rounded-lg mt-10">
+            <h1>Home</h1>
         </div>
     </div>
 
-@endsection
+@endsection();

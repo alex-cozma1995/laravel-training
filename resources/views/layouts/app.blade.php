@@ -9,17 +9,21 @@
                     <a href="">Home</a>
                 </li>
                 <li>
-                    <a href="">Posts</a>
+                    <a href="{{ route('posts') }}">Posts</a>
                 </li>
             </ul>
             <ul class="flex items-center space-x-5">
                 @if (auth()->user())
                     <li>
-                        <a href="">Axl Foley</a>
+                        <a href="">{{ auth()->user()->name }}</a>
                     </li>
 
                     <li>
-                        <a href="">Logout</a>
+                        <form action="{{ route('logout') }}" method="post" class="inline p-3">
+                            @csrf
+
+                            <button type="submit">Logout</button>
+                        </form>
                     </li>
                 @else
                     <li>
