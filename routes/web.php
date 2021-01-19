@@ -47,3 +47,7 @@ Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/users/{user:username}/posts', [UserPostController::class, 'index'])->name('user.posts');
+
+Route::get('/articles', function(){
+    return view('articles');
+})->name('articles');
