@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\StoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,7 @@ Route::get('/users/{user:username}/posts', [UserPostController::class, 'index'])
 Route::get('/articles', function(){
     return view('articles');
 })->name('articles');
+
+Route::middleware(['auth'])->group( function() {
+    Route::get('/stories', [StoriesController::class, 'index']);
+});
