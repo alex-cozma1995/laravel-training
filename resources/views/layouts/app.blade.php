@@ -14,6 +14,9 @@
                 <li>
                     <a href="{{ route('articles') }}">Articles</a>
                 </li>
+                <li>
+                    <a href="{{ route('stories.index') }}">Stories</a>
+                </li>
             </ul>
             <ul class="flex items-center space-x-5">
                 @if (auth()->user())

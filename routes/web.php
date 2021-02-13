@@ -54,5 +54,10 @@ Route::get('/articles', function(){
 })->name('articles');
 
 Route::middleware(['auth'])->group( function() {
-    Route::get('/stories', [StoriesController::class, 'index']);
+    // Route::get('/stories', 'StoriesController@index')->name('stories.index');
+    // Route::get('/stories/{story}', 'StoriesController@show')->name('stories.show');
+
+    Route::resources([
+        'stories' => StoriesController::class
+    ]);
 });
