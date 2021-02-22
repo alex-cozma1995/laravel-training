@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Story;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoryRequest;
+use Illuminate\Support\Facades\Gate;
 
 class StoriesController extends Controller
 {
@@ -31,7 +33,11 @@ class StoriesController extends Controller
     public function create()
     {
         //
-        return view('stories.create');
+        $this->authorize('create');
+        $story = new Story;
+        return view('stories.create', [
+            'story' => $story
+        ]);
     }
 
     /**
@@ -40,17 +46,10 @@ class StoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoryRequest $request)
     {
         //
-        $data = $request->validate([
-            'title' => 'required',
-            'body' => 'required',
-            'type' => 'required',
-            'status' => 'required',
-        ]);
-
-        auth()->user()->stories()->create($data);
+        auth()->user()->stories()->create($request->all());
 
         return redirect()->route('stories.index')->with('status', 'Story Created Successfully!');
     }
@@ -78,6 +77,8 @@ class StoriesController extends Controller
     public function edit(Story $story)
     {
         //
+        // Gate::authorize('edit-story', $story);
+        $this->authorize('update', $story);
         return view('stories.edit', [
             'story' => $story
         ]);
@@ -90,17 +91,10 @@ class StoriesController extends Controller
      * @param  \App\Story  $story
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Story $story)
+    public function update(StoryRequest $request, Story $story)
     {
         //
-        $data = $request->validate([
-            'title' => 'required',
-            'body' => 'required',
-            'type' => 'required',
-            'status' => 'required',
-        ]);
-
-        $story->update( $data );
+        $story->update($request->all());
 
         return redirect()->route('stories.index')->with('status', 'Story Updated Successfully!');
     }
@@ -114,5 +108,7 @@ class StoriesController extends Controller
     public function destroy(Story $story)
     {
         //
+        $story->delete();
+        return redirect()->route('stories.index')->with('status', 'Story Deleted Successfully!');
     }
 }

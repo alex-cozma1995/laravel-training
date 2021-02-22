@@ -1,19 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="flex justify-center">
-    <div class="w-8/12 rounded-lg bg-white p-6 mt-10">
-        <div>
-            {{ $story->title }}
-            <a href=" {{ route('stories.index') }}" class="float-right">Back</a>
-        </div>
-        <div>
-            {{ $story->body}}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    {{ $story->title }}
 
-            <div class="font-semibold">
-                Status: {{ $story->status == 1 ? 'Active' : 'Deleted'}}
-                Type: {{ $story->type }}
-            </p>
+                    <a href=" {{ route('stories.index') }}" class="float-right">Back</a>
+                </div>
+
+                <div class="card-body">
+                    {{ $story->body}}
+
+                    <p class="font-weight-bold">
+                        Status: {{ $story->status == 1 ? 'Yes' : 'No'}}
+                        Type: {{ $story->type }}
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
