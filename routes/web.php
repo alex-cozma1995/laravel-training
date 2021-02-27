@@ -61,3 +61,33 @@ Route::middleware(['auth'])->group( function() {
         'stories' => StoriesController::class
     ]);
 });
+
+//Route::get('/fimesz',  function () {
+//    return view('fimesz.index');
+//});
+
+
+Route::get('/fimesz', function () {
+    return view('fimesz');
+})->name('fimesz');
+Route::get('/alkalmaink', function () {
+    return view('alkalmaink');
+})->name('alkalmaink');
+Route::get('/alkalom-1', function () {
+    return view('alkalom');
+})->name('alkalom-1');
+Route::get('/alkalom-2', function () {
+    return view('alkalmaink-karitativ');
+})->name('alkalom-2');
+Route::get('/kontakt', function () {
+    return view('kontakt');
+})->name('kontakt');
+Route::get('/rolunk', function () {
+    return view('rolunk');
+})->name('rolunk');
+Route::get('/projektek', function () {
+    return view('projektek');
+})->name('projektek');
+Route::get('/projekt', function () {
+    return view('projekt');
+})->name('projekt');
